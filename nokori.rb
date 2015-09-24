@@ -5,17 +5,11 @@ PAGE_URL = "http://joongang.joins.com/"
 
 page = Nokogiri::HTML(open(PAGE_URL))
 
-
-
 article_body = page.css('.bd li a')
 
-PAGENAMES = []
 article_body.each_with_index do |article, index|
-
-    PAGENAMES << article['href'].to_s
-    
-
-    newpage = Nokogiri::HTML(open(PAGENAMES[index]))
+    temp = article['href'].to_s
+    newpage = Nokogiri::HTML(open(temp))
     articlecontent = newpage.css('#article_body')
     puts articlecontent
 end
